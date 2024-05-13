@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup" (change)="onChange($event)">
+    <label class="fs-5">{{label}}</label>
+    <select class="form-control form-control-lg" formControlName="{{this.formControlName}}"
+            [ngClass]="{'is-invalid': !this.isValid(), 'is-valid': this.isValid()}">
+        <option [value]="null" selected style="text-align: center; justify-content: flex-end">Seleccione</option>
+        @for (item of items; track item) {
+        <option [value]="item[propertyId]" style="text-align: center; justify-content: flex-end">{{item[propertyValue]}}</option>
+        }
+    </select>
+    <div class="invalid-feedback">{{this.traducir('MSN.REQUERIDO')}}</div>
+    <div class="valid-feedback"></div>
+</div>
+

@@ -1,0 +1,84 @@
+<div class="table-responsive" *ngIf="!renderTable">
+    <div>
+        <ul class="list-group list-group-item-warning list-group-flush" style="justify-content: right">
+            <li class="list-group-item border-0 pl-0">
+                No hay datos
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="table-responsive" *ngIf="renderTable">
+    <div *ngIf="renderExport">
+        <ul class="list-group list-group-horizontal list-group-flush" style="justify-content: right">
+            <li class="list-group-item border-0 pl-0">
+                <i class='fas fa-file-excel fa-border fa-2x' style='color:#50a5f1' title="Descarga Excel" (click)="exportToExcel()"></i>
+                <i class='fas fa-file-csv fa-border fa-2x' style='color:#50a5f1' title="Descarga CSV" (click)="exportToCsv()"></i>
+            </li>
+        </ul>
+    </div>
+    <table mat-table
+           [dataSource]="dataSource" class="table align-middle dt-responsive nowrap w-100 table-check" matSort #sort>
+        <ng-container [matColumnDef]="col.key" *ngFor="let col of cols">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"
+                title="{{col.tooltip}}"
+                style="text-align: center; background-color: #ebebf4; color: darkslategray ;min-width: 135px;">
+                {{col.label}}
+            </th>
+            <td mat-cell *matCellDef="let element; let i = index">
+                <label type="text" *ngIf="col.type == 'number'" class="float-end">{{formatNumber(element[col.key])}}</label>
+                <label type="text" *ngIf="col.type == 'text'">{{element[col.key]}}</label>
+                <label *ngIf="col.type == 'currency'" class="float-end">{{formatCurrecy(element[col.key])}}</label>
+                <label *ngIf="col.type == 'date'">{{formatDate(element[col.key])}}</label>
+                <div class="btn-lg float-end">
+                    <button *ngIf="col.type == 'button' && renderAdd && col.key == 'add'"
+                            (click)="add(element)"  class='btn btn-primary btn-circle btn-sm' aria-label="{{addTitle ?? 'Agregar'}}" title="{{addTitle ?? 'Agregar'}}">
+                        <i class="fas fa-plus"></i>
+                    </button>
+
+                    <!-- Hide or Show Edit -->
+                    <ng-container>
+                        <!-- -{{fieldDisabledEdit}}-{{element[fieldDisabledEdit]}} -->
+                        <button *ngIf="col.type == 'button' && renderEditar && col.key != 'add'"
+                            (click)="edit(element)" class='btn btn-info btn-circle btn-sm' aria-label="Editar" title="Editar"
+                            [disabled]="setDisabled(fieldDisabledEdit, element[fieldDisabledEdit])">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </ng-container>
+
+                    <button *ngIf="col.type == 'button' && renderDetails && col.key != 'add'"
+                        (click)="details(element)" class='btn btn-info btn-circle btn-sm' aria-label="Detalle" title="Detalle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <button *ngIf="col.type == 'button' && renderClone && col.key != 'add'"
+                            (click)="clone(element)" class='btn btn-info btn-circle btn-sm' aria-label="Versionar a partir de una existente" title="Versionar a partir de una existente">
+                        <i class="fas fa-registered"></i>
+                    </button>
+
+                    <!-- Hide or Show Delete -->
+                    <ng-container>                      
+                        <button *ngIf="col.type == 'button' && renderDelete && col.key != 'add'"
+                            (click)="delete(element)" class='btn btn-danger btn-circle btn-sm' aria-label="{{deleteTitle ?? 'Eliminar'}}" title="{{deleteTitle ?? 'Eliminar'}}"
+                            [disabled]="setDisabled(fieldDisabledDelete, element[fieldDisabledDelete])">
+                            <i class="{{deleteIcon ?? 'fas fa-trash'}}"></i>
+                        </button>
+                    </ng-container>
+
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator
+        #paginator
+        [pageSizeOptions]="pageSizeOptions"
+        showFirstLastButtons
+        [length]="totalRecords"
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage"
+        (page)="changedPage($event)"
+        aria-label="Seleccion Página"
+    ></mat-paginator>
+</div>

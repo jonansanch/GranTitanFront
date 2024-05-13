@@ -1,0 +1,25 @@
+<ng-template let-modal #template>   
+    <div class="modal-content" style="width: 100%">
+        <div class="modal-header">
+            <h4 class="modal-title">{{data.tittle}}</h4>
+            <div *ngIf="previzualizar" style="text-align: right;">
+                <button (click)="toPDF()" type="button" class="btn btn-success">Descargar</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="previsualiza-pdf" style="overflow-y: auto; height: 60vh;">
+                <div id="htmlPdf" [innerHTML]="html"></div>                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="close($event,data.route)">Aceptar</button>
+        </div>    
+    </div>
+</ng-template>
+
+<div style="display: none;">
+    <app-spinner></app-spinner>
+</div>
+
+
+

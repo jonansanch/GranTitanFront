@@ -1,0 +1,68 @@
+<div class="table-responsive" *ngIf="!renderTable">
+    <div>
+        <ul class="list-group list-group-item-warning list-group-flush" style="justify-content: right">
+            <li class="list-group-item border-0 pl-0">
+                No hay datos
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="table-responsive" *ngIf="renderTable">
+    <table class="table table-borderless table-sm table-striped text-center">
+        <thead>
+        <th scope="col" *ngFor="let col of cols"
+            title="{{col.tooltip}}"
+            style="text-align: center;justify-content: center; background-color: #ebebf4; color: darkslategray  ;">
+            {{col.label}}
+        </th>
+        </thead>
+        <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+        <tr cdkDrag cdkDragLockAxis="y" *ngFor="let element of data"
+            style="text-align: center;justify-content: center;">
+            <td *ngFor="let col of cols" style="text-align: center;justify-content: center;">
+                <label type="text" *ngIf="col.type != 'button' && col.type != 'currency'">{{element[col.key]}}</label>
+                <label *ngIf="col.type != 'button' && col.type == 'currency'">{{formatCurrecy(element[col.key])}}</label>
+                <div class="btn-lg float-end">
+                    <button *ngIf="col.type == 'button' && renderAdd"
+                            (click)="add(element)" class='btn btn-primary btn-circle btn-sm' aria-label="Agregar"
+                            title="Asignar - Agregar">
+                        <i class="fas fa-plus"></i>
+                    </button>
+
+                    <!-- Hide or Show Edit -->
+                    <ng-container>
+                        <button *ngIf="col.type == 'button' && renderEditar"
+                                (click)="edit(element)" class='btn btn-info btn-circle btn-sm' aria-label="Editar" title="Editar"
+                                [disabled]="setDisabled(fieldDisabledEdit, element[fieldDisabledEdit])">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </ng-container>
+
+                    <button *ngIf="col.type == 'button' && renderDetails"
+                            (click)="details(element)" class='btn btn-info btn-circle btn-sm' aria-label="Detalle"
+                            title="Detalle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <button *ngIf="col.type == 'button' && renderClone"
+                            (click)="clone(element)" class='btn btn-info btn-circle btn-sm'
+                            aria-label="Versionar a partir de una existente"
+                            title="Versionar a partir de una existente">
+                        <i class="fas fa-registered"></i>
+                    </button>
+
+                    <!-- Hide or Show Delete -->
+                    <ng-container>
+                        <button *ngIf="col.type == 'button' && renderDelete"
+                                (click)="delete(element)" class='btn btn-danger btn-circle btn-sm' aria-label="Eliminar"
+                                title="Eliminar"
+                                [disabled]="(fieldShowDelete !== '') || (element[fieldShowDelete] && element[fieldShowDelete]==false) || (element[fieldShowDelete] && element[fieldShowDelete]!==1)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </ng-container>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

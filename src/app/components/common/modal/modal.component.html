@@ -1,0 +1,11 @@
+<ng-template let-modal #template>
+    <div class="modal-header">
+        <h4 class="modal-title">{{data.tittle}}</h4>
+    </div>
+    <div class="modal-body">
+        {{data.message}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="close($event,data.route)">Aceptar</button>
+    </div>
+</ng-template>

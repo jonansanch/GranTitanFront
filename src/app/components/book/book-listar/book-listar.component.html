@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <app-page-title title="{{title}}" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body border-bottom">
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0 card-title flex-grow-1"></h5>
+                        <div class="flex-shrink-0 d-flex gap-1">
+                            <a href="javascript:void(0);" class="btn btn-primary" (click)="Crear()">Crear</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <mat-form-field class="pl-2">
+                            <mat-label>Buscar</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Ej: Nombre. Apellido, Telefono"
+                                #input>
+                            <mat-icon class="icon-size-8" matSuffix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                        </mat-form-field>
+
+                        <mat-table matTable [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="nameAutor">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Autor </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.authorBook.firstName}} {{element.authorBook.secondName}} {{element.authorBook.surname}} {{element.authorBook.secondSurname}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Libro </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.name }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="library">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Editorial </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.library }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="pages">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Paginas </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.pages }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="price">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.price | currency: 'COP':true:'1.0' }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="releaseDate">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Lanzamiento </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.releaseDate | date:"dd/MM/yyyy" }}</mat-cell>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="accion">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <button mat-icon-button color="primary" class="ml-2" matTooltip="Editar"
+                                        (click)="edit(element)">
+                                        <mat-icon [svgIcon]="'heroicons_solid:pencil'">Editar</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" class="ml-2" matTooltip="Eliminar"
+                                        (click)="delete(element)">
+                                        <mat-icon [svgIcon]="'heroicons_solid:trash'">Eliminar</mat-icon>
+                                    </button>
+                                </mat-cell>
+                            </ng-container>
+
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+
+                        <mat-paginator [pageSizeOptions]="[10, 20, 100]" showFirstLastButtons></mat-paginator>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display: none;">
+    <app-spinner></app-spinner>
+</div>

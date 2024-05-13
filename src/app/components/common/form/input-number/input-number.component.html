@@ -1,0 +1,10 @@
+<label class="fs-5">{{label}}</label>
+<div [formGroup]="formGroup" (change)="onChange($event)">
+    <input type="number" formControlName="{{this.formControlName}}" class="form-control form-control-lg"
+           [value]="value"
+           [ngClass]="{'is-invalid': !this.isValid(), 'is-valid': this.isValid()}"
+           [min]="this.min" [max]="this.max">
+    <div class="invalid-feedback">{{this.traducir('MSN.REQUERIDO')}}</div>
+    <div class="valid-feedback"></div>
+</div>
+

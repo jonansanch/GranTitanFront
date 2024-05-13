@@ -1,0 +1,17 @@
+.basic-container-spinner {
+  display: inline-block;
+  position: relative;
+  margin: 20px;
+  width: 5rem;
+  height: 5rem;
+}
+
+.img-spinner {
+  max-width: 100%;
+  position: absolute;
+  max-height: 100%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  clip-path: circle(45% at 50% 49%);
+}

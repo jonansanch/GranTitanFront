@@ -1,0 +1,92 @@
+[
+  {
+    "code": 1,
+    "name": "John Smith",
+    "nit": 123456789,
+    "occupation": "Advisor",
+    "dateOfBirth": "1984-05-05",
+    "telefono": 123456,
+    "age": 36,
+    "valor": 1000000,
+    "descuentos": 200000,
+    "total": 800000,
+    "estado": "Abierto",
+    "lineaProceso": "Contributivo"
+  },
+  {
+    "code": 2,
+    "name": "maoh",
+    "nit": 123456789,
+    "occupation": "Advisor",
+    "dateOfBirth": "1984-05-05",
+    "telefono": 123456,
+    "age": 36,
+    "valor": 45555555,
+    "descuentos": 200000,
+    "total": 800000,
+    "estado": "Cerrado",
+    "lineaProceso": "Contributivo"
+  },
+  {
+    "name": "Peter Adams",
+    "occupation": "HR",
+    "dateOfBirth": "2000-01-01",
+    "age": 20,
+    "estado": "Cerrado",
+    "lineaProceso": "Subsididado"
+  },
+  {
+    "name": "Lora Bay",
+    "occupation": "Marketing",
+    "dateOfBirth": "1977-03-03",
+    "age": 43
+  },
+  {
+    "name": "John Smith",
+    "occupation": "Advisor",
+    "dateOfBirth": "1984-05-05",
+    "age": 36
+  },
+  {
+    "name": "Masri",
+    "occupation": "Developer",
+    "dateOfBirth": "1992-02-02",
+    "age": 2
+  },
+  {
+    "name": " Adams",
+    "occupation": "HR",
+    "dateOfBirth": "2000-01-01",
+    "age": 20
+  },
+  {
+    "name": "FER ",
+    "occupation": "Marketing",
+    "dateOfBirth": "1977-03-03",
+    "age": 43
+  },
+  {
+    "name": "John Smith",
+    "occupation": "Advisor",
+    "dateOfBirth": "1984-05-05",
+    "age": 36
+  },
+  {
+    "name": " Masri",
+    "occupation": "dsf",
+    "dateOfBirth": "1992-02-02",
+    "age": 28
+  },
+  {
+    "name": "Peter ",
+    "occupation": "HR",
+    "dateOfBirth": "2000-01-01",
+    "age": 20
+  },
+  {
+    "name": "Lora ",
+    "occupation": "Marketing",
+    "dateOfBirth": "1977-03-03",
+    "age": 43
+  }
+]

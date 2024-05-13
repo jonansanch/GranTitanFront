@@ -1,0 +1,21 @@
+<div class="btn-group align-items-end" role="group">
+    <button *ngIf="renderClean"  type="button" class="btn btn-filter btn-soft-secondary" (click)="clean($event)" style="min-width: 80px;" name="button">
+        <span *ngIf="!renderCreate" class="mdi mdi-monitor-clean"></span> Limpiar
+    </button>
+    <button *ngIf="renderCreate" type="button" class="btn btn-soft-secondary" (click)="create($event)"
+            name="button">
+        Crear
+    </button>
+    <button *ngIf="renderFilter"  type="button" class="btn btn-filter btn-soft-secondary" (click)="filter($event)" style="min-width: 80px;"
+            name="button">
+        <span *ngIf="!renderCreate" class="mdi mdi-filter-outline"></span> Filtrar
+    </button>
+    <button *ngIf="renderExport" type="button" class="btn btn-soft-secondary"
+            (click)="exportToExcel($event)" title="Descarga Excel">
+        XLSX
+    </button>
+    <button *ngIf="renderExport" type="button" class="btn btn-soft-secondary"
+            (click)="exportToCsv($event)" title="Descarga CSV">
+        CSV
+    </button>
+</div>

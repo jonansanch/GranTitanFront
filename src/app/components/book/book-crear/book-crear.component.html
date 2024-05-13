@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <app-page-title title="{{title}} " [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div style="display: none;">
+        <app-modal></app-modal>
+        <app-spinner></app-spinner>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Información de registro</h4>
+                    <p class="card-title-desc">Seleccione y digite la Información según corresponda</p>
+                    <form class="needs-validation">
+                        <div class="row g-3 align-items-lg-start">
+                            <div class="col-xxl-6 col-lg-3">
+                                <label class="fs-5">Autor *</label>
+                                <select class="form-control form-control-lg" id="autor" name="autor" [required]="autor" [(ngModel)]="autor">
+                                    <option value="">Seleccionar</option>
+                                    <option *ngFor="let item of Autores" value="{{item.id}}">{{item.firstName}} {{item.secondName}} {{item.surname}} {{item.secondSurname}}</option>
+                                </select>
+                            </div>
+                            <div class="col-xxl-6 col-lg-3">
+                                <app-inputText [label]="'Nombre *'"
+                                    [formControlName]="'name'" [formGroup]="formGroup"></app-inputText>
+                            </div>
+                            <div class="col-xxl-6 col-lg-6">
+                                <app-inputText [label]="'Editorial *'"
+                                    [formControlName]="'library'" [formGroup]="formGroup"></app-inputText>
+                            </div>    
+                            <div class="col-xxl-6 col-lg-6">
+                                <app-inputNumber [label]="'Nro Paginas *'"
+                                    [formControlName]="'pages'" [formGroup]="formGroup"></app-inputNumber>
+                            </div>    
+                            <div class="col-xxl-6 col-lg-6">
+                                <app-inputNumber [label]="'Precio *'"
+                                    [formControlName]="'price'" [formGroup]="formGroup"></app-inputNumber>
+                            </div>    
+                            <div class="col-xxl-6 col-lg-3">
+                                <app-inputDate [label]="'Fecha Lanzamiento *'"
+                                    [formControlName]="'releaseDate'" [formGroup]="formGroup"></app-inputDate>
+                            </div>                                                                                                                                                           
+                        </div>
+                        <br>
+                        <div class="d-flex gap-2">
+                            <button (click)="guardar()" class="btn btn-success w-md">Guardar</button>
+                            <button (click)="cancelar()" class="btn btn-danger w-md">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

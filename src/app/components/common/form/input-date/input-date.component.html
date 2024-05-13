@@ -1,0 +1,8 @@
+<div [formGroup]="formGroup" (change)="onChange($event)">
+    <label class="fs-5">{{label}}</label>
+    <input type="date" formControlName="{{this.formControlName}}" class="form-control form-control-lg"
+           [ngClass]="{'is-invalid': !this.isValid(), 'is-valid': this.isValid()}">
+    <div class="invalid-feedback">{{this.traducir('MSN.REQUERIDO')}}</div>
+    <div class="valid-feedback"></div>
+</div>
+

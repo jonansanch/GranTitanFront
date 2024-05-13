@@ -1,0 +1,10 @@
+<div [formGroup]="formGroup">
+    <label class="fs-5">{{label}}</label>
+    <input type="file" maxlength="1200" class="form-control form-control-lg"
+           (change)="onChange($event.target)"
+           formControlName="{{this.formControlName}}"
+           [ngClass]="{'is-invalid': !this.isValid(), 'is-valid': this.isValid()}">
+    <div class="invalid-feedback">{{this.traducir('MSN.REQUERIDO')}}</div>
+    <div class="valid-feedback"></div>
+</div>
+

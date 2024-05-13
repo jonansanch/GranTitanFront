@@ -1,0 +1,100 @@
+<div class="card-body">
+    <div class="table-responsive" *ngIf="!renderTable">
+        <div>
+            <ul class="list-group list-group-item-warning list-group-flush" style="justify-content: right">
+                <li class="list-group-item border-0 pl-0">
+                    No hay datos
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="table-responsive" *ngIf="renderTable">
+        <div>
+            <ul class="list-group list-group-horizontal list-group-flush" style="justify-content: right">
+                <li class="list-group-item border-0 pl-0">
+                    <i class='fas fa-file-excel fa-border fa-2x' style='color:#50a5f1' title="Descarga Excel"
+                       (click)="exportToExcel()"></i>
+                    <i class='fas fa-file-csv fa-border fa-2x' style='color:#50a5f1' title="Descarga CSV"
+                       (click)="exportToCsv()"></i>
+                </li>
+            </ul>
+        </div>
+        <table class="table align-middle dt-responsive nowrap w-100 table-check">
+            <thead>
+            <th scope="col" *ngFor="let col of cols"
+                title="{{col.tooltip}}"
+                style="text-align: center;justify-content: center; background-color: #ebebf4; color: darkslategray  ;">
+                {{col.label}}
+            </th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let element of dataSource" style="text-align: center;justify-content: center;">
+                <td *ngFor="let col of cols" style="text-align: center;justify-content: center;">
+                    <label type="text"
+                           *ngIf="col.type != 'button' && col.type != 'currency'">{{element[col.key]}}</label>
+                    <button style="border-radius: 50%;" type="button" *ngIf="col.type == 'button' && renderAdd"
+                            (click)="add(element)" class='btn btn-primary' aria-label="Agregar"
+                            title="Asignar - Agregar">
+                        <i class="fas fa-plus"></i>
+                    </button>
+
+                    <!-- Hide or Show Edit -->
+                    <ng-container
+                            *ngIf="fieldShowEdit =='' || element[fieldShowEdit]==true || element[fieldShowEdit]==1">
+                        <button style="border-radius: 50%;" type="button" *ngIf="col.type == 'button' && renderEditar"
+                                (click)="edit(element)" class='btn btn-info' aria-label="Editar" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </ng-container>
+
+                    <button style="border-radius: 50%;" type="button" *ngIf="col.type == 'button' && renderDetails"
+                            (click)="details(element)" class='btn btn-info' aria-label="Detalle" title="Detalle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <!-- Hide or Show Delete -->
+                    <ng-container
+                            *ngIf="fieldShowDelete =='' || element[fieldShowDelete]==true || element[fieldShowDelete]==1">
+                        <button style="border-radius: 50%;" type="button" *ngIf="col.type == 'button' && renderDelete"
+                                (click)="delete(element)" class='btn btn-danger' aria-label="Eliminar" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </ng-container>
+
+                    <!-- Hide or Show Versión -->
+                    <ng-container
+                            *ngIf="fieldShowVersion =='' || element[fieldShowVersion]==true || element[fieldShowVersion]==1">
+                        <button style="border-radius: 50%;" type="button" *ngIf="col.type == 'button' && renderVersion"
+                                (click)="version(element)" class='btn btn-version' aria-label="Versión" title="Versión">
+                            <i class="fas fa-version"></i>
+                        </button>
+                    </ng-container>
+
+                    <label *ngIf="col.type != 'button' && col.type == 'currency'">{{formatCurrecy(element[col.key])}}</label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-md-end p-2">
+            <ngb-pagination
+                    [collectionSize]="totalRecords"
+                    [(page)]="currentPage"
+                    [pageSize]="pageSize"
+                    (pageChange)="changedPage($event)"
+            >
+            </ngb-pagination>
+            <div>
+                <br/>
+                <label> 1-{{pageSize}} de {{totalRecords}} </label>
+            </div>
+            <label>
+                <select class="form-select" style="width: auto" [(ngModel)]="pageSize"
+                        (ngModelChange)="changedSize($event)">
+                    <ng-container *ngFor="let option of pageSizeOptions">
+                        <option [ngValue]="option">{{option}} registros por página</option>
+                    </ng-container>
+                </select>
+            </label>
+        </div>
+    </div>
+</div>

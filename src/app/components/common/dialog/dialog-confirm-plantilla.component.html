@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Mensaje</h1>
+<div mat-dialog-content>
+    <div>
+        ¿Que desea clonar de la plantilla?<br/><br/>
+    </div>
+    <div>
+        <input type="checkbox" id="definicion" checked disabled>
+        La definición de la plantilla
+    </div>
+    <div>
+        <input type="checkbox" id="estructura" [(ngModel)]="estructura">
+        La estructura de los parrafos asociados a la plantilla
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="aceptar($event)">Aceptar</button>
+    <button mat-raised-button color="warn" (click)="close($event)">Cancelar</button>
+</mat-dialog-actions>
+

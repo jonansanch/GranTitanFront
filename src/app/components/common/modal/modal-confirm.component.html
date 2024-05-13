@@ -1,0 +1,12 @@
+<ng-template let-modal #template>
+    <div class="modal-header">
+        <h4 class="modal-title">{{data.tittle}}</h4>
+    </div>
+    <div class="modal-body">
+        {{data.message}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="aceptar($event)">Aceptar</button>
+        <button type="button" class="btn btn-danger" (click)="close($event)">Cancelar</button>
+    </div>
+</ng-template>

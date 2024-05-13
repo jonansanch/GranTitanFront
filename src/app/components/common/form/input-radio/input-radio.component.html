@@ -1,0 +1,10 @@
+<div [formGroup]="formGroup">
+    <label class="fs-5">{{label}}</label>
+    <div class="form-check form-switch">
+        <input class="form-check-input" style="width: 80px; height: 40px" type="checkbox" role="switch" (change)="onChange($event)"
+               formControlName="{{this.formControlName}}"
+               [ngClass]="{'is-valid': this.isValid()}">
+        <!--div class="invalid-feedback">{{this.traducir('MSN.REQUERIDO')}}</div>
+        <div class="valid-feedback"></div-->
+    </div>
+</div>

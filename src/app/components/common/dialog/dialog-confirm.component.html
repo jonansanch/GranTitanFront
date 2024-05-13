@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <div>
+        {{data.message}}
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="aceptar($event)">Aceptar</button>
+    <button mat-raised-button color="warn" (click)="close($event)">Cancelar</button>
+</mat-dialog-actions>
+

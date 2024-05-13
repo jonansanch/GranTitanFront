@@ -1,0 +1,10 @@
+<div [formGroup]="formGroup" (change)="onChange($event)">
+    <label class="fs-5">{{label}}</label>
+    <textarea formControlName="{{this.formControlName}}" class="form-control form-control-lg"
+              [rows]="rows" [cols]="cols"
+              [ngClass]="{'is-invalid': !this.isValid(), 'is-valid': this.isValid()}">
+    </textarea>
+    <div class="invalid-feedback">{{this.traducir('MSN.REQUERIDO')}}</div>
+    <div class="valid-feedback"></div>
+</div>
+
